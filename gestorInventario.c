@@ -16,6 +16,7 @@ int numP;
 int inventarioPrincipal();
 int agregarProducto();
 void mostrarProductos();
+double calcularValorTotalInventario();
 
 int main() {
     
@@ -62,8 +63,14 @@ int main() {
 
             case 3:
 
-                  
+                //calcula el valor total del inventario
+                totalInventario = calcularValorTotalInventario();
 
+                //imprime el valor total del inventario
+                printf("\nEl valor en el inventario es de: %.2lf \n",totalInventario);
+
+                printf("\n_____________________________________\n");
+                
                 break;
 
             case 4:
@@ -220,4 +227,23 @@ void mostrarProductos() {
     }
 	
     printf("\n_____________________________________\n");
+}
+
+double calcularValorTotalInventario() {
+
+    printf("\n_____________________________________\n");
+    printf("\n=== Productos %d ===\n",numP);
+
+    double Total_PyC = 0.0;             //Variables principales necesarias
+    double total = 0.0;
+
+    for(int i = 0 ;i < numP; i++){
+        
+        Total_PyC = (precios[i]) * (cantidades)[i];
+        total += Total_PyC;         //Se ejecuta el ciclo hasta que la suma de los productos de las cantidades por los precios se quede sin valores que añadir a la suma
+                                            
+        Total_PyC = 0.0;
+    }
+    
+	return total;   //Se vuelve el total
 }
