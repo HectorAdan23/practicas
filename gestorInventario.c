@@ -17,6 +17,7 @@ int inventarioPrincipal();
 int agregarProducto();
 void mostrarProductos();
 double calcularValorTotalInventario();
+void liberarInventario();
 
 int main() {
     
@@ -87,7 +88,7 @@ int main() {
     } while(opcion != 4);
 
     // Liberar memoria antes de salir
-    
+    liberarInventario();
 
     return 0;
 }
@@ -246,4 +247,20 @@ double calcularValorTotalInventario() {
     }
     
 	return total;   //Se vuelve el total
+}
+
+void liberarInventario() {
+
+    //liberar toda la memoria para evitar fugas de memoria en los espacios reservados del arreglo doble global nombresProductos
+    for (int i = 0; i < numP; i++) {
+        
+        free(nombresProductos[i]);      
+    
+    }
+
+    //liberar toda la memoria de los punteros faltantes
+    free(nombresProductos);
+    free(cantidades);
+    free(precios);
+
 }
