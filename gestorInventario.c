@@ -15,6 +15,7 @@ int numP;
 //funciones principales
 int inventarioPrincipal();
 int agregarProducto();
+void mostrarProductos();
 
 int main() {
     
@@ -54,7 +55,8 @@ int main() {
 
             case 2:
 
-               
+               //Se llama a la funcion "mostrarInventario"
+                mostrarProductos();
 
                 break;
 
@@ -195,5 +197,27 @@ int agregarProducto() {
     scanf(" %lf", &precios[numP] );
 
     return 1;
+
+}
+
+void mostrarProductos() {
     
+    printf("\n_____________________________________\n");
+    printf("=== Productos %d ===\n",numP);
+
+    double Total_PyC = 0.0;
+    int nP = 0;             //Variables principales para esta funcion
+    int i = 0;
+    
+    while(i < numP){
+        
+        Total_PyC = (precios[i]) * (cantidades[i]);
+        printf("\nMostrador %d: %s - Cantidad: %d - Precio: $%.2lf - Valor: $%.2lf ",nP,nombresProductos[i],cantidades[i],precios[i],Total_PyC);
+
+        Total_PyC = 0.0;   //se ejecuta el ciclo while hasta que se impriman todos los productos,cantidades y precios respectivos.
+        nP++;                       
+        i++;
+    }
+	
+    printf("\n_____________________________________\n");
 }
