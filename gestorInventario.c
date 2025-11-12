@@ -68,7 +68,7 @@ int main() {
                 totalInventario = calcularValorTotalInventario();
 
                 //imprime el valor total del inventario
-                printf("\nEl valor en el inventario es de: %.2lf \n",totalInventario);
+                printf("\nEl valor en el inventario es de: $%.2lf \n",totalInventario);
 
                 printf("\n_____________________________________\n");
                 
