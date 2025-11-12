@@ -14,6 +14,7 @@ int numP;
 
 //funciones principales
 int inventarioPrincipal();
+int agregarProducto();
 
 int main() {
     
@@ -46,7 +47,8 @@ int main() {
         switch(opcion) {
             case 1:
     
-               
+                //Se llama a la funcion "agregarProducto"
+                numP += agregarProducto();
 
                 break;
 
@@ -154,4 +156,44 @@ int inventarioPrincipal(){
     numP = 8; //cambiamos el valor de numP para usarlos despues como indice
 
     return 1;
+}
+
+int agregarProducto() {
+
+    char producto[50];
+    
+    printf("\nIngrese nombre del producto: ");
+    fgets( producto, 50, stdin);                 //Se agrega el nombre del producto
+    producto[strcspn(producto, "\n")] = '\0';  // Strcspn = cambia los valores no requeridos ('\n') con vacios('/0')
+
+    // Reasignar memoria para los arreglos globales, tantos los simples como el puntero dobles
+
+    nombresProductos = (char**) realloc(nombresProductos, (numP + 1) * sizeof(char*));
+
+    cantidades = (int*)realloc(cantidades, (numP + 1) * sizeof(int));
+
+    precios = (double*)realloc(precios, (numP + 1) * sizeof(double));
+    
+    // Verificar que se realizaron los espacios de memoria correcpondientes
+    if (!nombresProductos || !cantidades || !precios) {
+
+        printf("Error: No se pudo asignar memoria\n");  
+        return 0;
+
+    }
+
+    // Asignar memoria para el nombre del producto del tamaño exacto para evitar malgaste de memoria
+    nombresProductos[numP] = calloc (strlen(producto) + 1,sizeof(char));
+    
+    //copiamos el nombre del producto en su lugar correspondiente
+    strcpy(nombresProductos[numP], producto);
+
+    // Pedir cantidad y precio y se guardan en los espacios reservados anteriormente en sus respectivos apuntadores
+    printf("\nIngrese cantidad: ");
+    scanf(" %d", &cantidades[numP] );
+    printf("\nIngrese precio: ");
+    scanf(" %lf", &precios[numP] );
+
+    return 1;
+    
 }
