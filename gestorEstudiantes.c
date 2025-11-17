@@ -66,3 +66,41 @@ int main(){
 	
 	return 0;
 }
+
+void capturarEstudiante(Estudiante *est) {
+
+	//Se captura el nombre del estudiante
+    char N_alumno[50];
+    printf("\nIngresa nombre: ");	
+    fgets(N_alumno,50,stdin);
+    strcpy(est->nombre,N_alumno);
+	est->nombre[strcspn(est->nombre, "\n")] = '\0';
+
+	//Se captura la matricula del estudiante
+    printf("\nIngrese matricula: ");
+    scanf(" %d",&est->matricula);
+	getchar();
+
+	//Se captura la calificacion 1 del estudiante
+    printf("\nIngrese calificacion 1: ");
+    scanf(" %lf",&est->calificaciones[0]);
+	getchar();
+
+	//Se captura la calificacion 2 del estudiante
+	printf("\nIngrese calificacion 2: ");
+    scanf(" %lf",&est->calificaciones[1]);
+	getchar();
+
+	//Se captura la calificacion 3 del estudiante
+	printf("\nIngrese calificacion 3: ");
+    scanf(" %lf",&est->calificaciones[2]);
+	getchar();
+
+	//Se captura la calificaion 4 del estudiante
+	printf("\nIngrese calificacion 4: ");
+    scanf(" %lf",&est->calificaciones[3]);
+	getchar();
+
+	printf("\n===============================\n");
+
+}
