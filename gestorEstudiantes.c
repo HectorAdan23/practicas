@@ -13,6 +13,7 @@ typedef struct {
 //funciones principales
 void capturarEstudiante(Estudiante *est);
 void calcularPromedio(Estudiante *est);
+void mostrarEstudiante(Estudiante est);
 
 int main(){
     Estudiante grupo[3];	//para 3 estudiantes, no mas
@@ -32,7 +33,11 @@ int main(){
 	printf("\n=== LISTA COMPLETA DE ESTUDIANTES ===\n");
 	
 	// Mostrar todos los estudiantes
-	
+	for(int j = 0 ; j < 3 ; j++){
+
+		mostrarEstudiante(grupo[j]);	//La funcion se replica 3 veces, una por cada estudiante ingresado
+
+	}
 	
 	// Encontrar el mejor promedio
 	int mejorIndex = 0;
@@ -117,4 +122,16 @@ void calcularPromedio(Estudiante *est) {
 	}
 	
 	est->promedio = temp_promedio / 4;		//Se divide para obtener el temporal y se almacena donde va el promedio del estudiante
+}
+
+void mostrarEstudiante(Estudiante est) {
+	
+	//Se imprime todos los datos de cada estudiante ingresado en el C - nombre - matricula - Calificaciones - promedio. 
+	printf("\n--- Información del Estudiante ---\n");
+	printf("\nNombre del estudiante: %s",est.nombre);
+	printf("\nMatricula: %d",est.matricula);
+	printf("\nCalificaciones: %.1lf - %.1lf - %.1lf - %.1lf",est.calificaciones[0],est.calificaciones[1],est.calificaciones[2],est.calificaciones[3]);
+	printf("\nPromedio: %.1lf",est.promedio);
+	printf("\n===============================\n");
+
 }
