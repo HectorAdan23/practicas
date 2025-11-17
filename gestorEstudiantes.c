@@ -12,6 +12,7 @@ typedef struct {
 
 //funciones principales
 void capturarEstudiante(Estudiante *est);
+void calcularPromedio(Estudiante *est);
 
 int main(){
     Estudiante grupo[3];	//para 3 estudiantes, no mas
@@ -23,7 +24,7 @@ int main(){
 
 		printf("\nEstudiante %d:\n", i+1);		//Almanea todos los datos de los estudiantes llamando a las funciones del bucle
 		capturarEstudiante(&grupo[i]);
-		
+		calcularPromedio(&grupo[i]);
 	
 	}
 	
@@ -103,4 +104,17 @@ void capturarEstudiante(Estudiante *est) {
 
 	printf("\n===============================\n");
 
+}
+
+void calcularPromedio(Estudiante *est) {
+	
+	double temp_promedio = 0.0;		//Se define un temporal
+
+	for(int i = 0 ; i < 4 ; i++ ){
+
+		temp_promedio += est->calificaciones[i];		//Se suman todas las calificaciones y se almadena en el temporal
+
+	}
+	
+	est->promedio = temp_promedio / 4;		//Se divide para obtener el temporal y se almacena donde va el promedio del estudiante
 }
